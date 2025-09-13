@@ -1,35 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mabl Visual Testing Demo — Visual Testing: detect layout or image issues</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mabl Visual Testing Demo</title>
   <style>
-    :root{--accent:#0066cc;--muted:#666}
-    body{font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.4;margin:0;background:#f6f8fb;color:#222}
-    header{background:white;padding:16px 24px;display:flex;align-items:center;gap:16px;box-shadow:0 1px 0 rgba(0,0,0,0.05)}
-    #logo-image{width:140px;height:36px;object-fit:contain}
-    .container{max-width:1100px;margin:28px auto;padding:0 20px}
-    .hero{background:linear-gradient(180deg,#fff 0,#f7fbff 100%);padding:36px;border-radius:12px;display:flex;gap:24px;align-items:center}
-    .hero .text{flex:1}
-    .hero h1{font-size:28px;margin:0 0 12px}
-    .hero p{color:var(--muted);margin:0 0 18px}
-    .cta{display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent);color:white;text-decoration:none}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #0366d6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+    }
+    header h1 {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 24px;
+    }
+    .hero {
+      background: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .hero img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
+    .pricing {
+      background: #eef3f9;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .plan {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 30%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .plan h3 {
+      margin-top: 0;
+    }
+    .toggle-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #0366d6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    /* Broken states */
+    body.broken header img { display: none; } /* Missing logo */
+    body.broken .hero { text-align: left; padding-left: 100px; } /* Layout shift */
+    body.broken .pricing { flex-direction: column; align-items: center; } /* Overlap risk */
+    body.broken .hero img { content: url('broken-link.jpg'); } /* Broken image */
   </style>
 </head>
-<body id="page-root">
+<body>
   <header>
-    <img id="logo-image" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='72'><rect rx='12' width='280' height='72' fill='%230066cc'/><text x='24' y='46' font-family='Arial' font-size='34' fill='white'>DemoLogo</text></svg>" alt="DemoLogo">
-    <nav style="margin-left:auto;color:var(--muted)">Demo app — Visual tests</nav>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="Demo Logo">
+    <h1>Mabl Visual Demo</h1>
   </header>
-  <main class="container">
-    <section class="hero card" id="hero">
-      <div class="text">
-        <h1 id="hero-title">Detect layout or image issues with visual tests</h1>
-        <p id="hero-desc">This demo page intentionally contains elements that can be toggled into a broken state.</p>
-        <a href="#" class="cta" id="signup-cta">Sign up — it's free</a>
-      </div>
-    </section>
-  </main>
+
+  <div class="hero">
+    <h2>Welcome to the Visual Testing Demo</h2>
+    <p>Use this page to see how mabl detects layout and image issues.</p>
+    <img src="https://picsum.photos/800/300" alt="Hero Image">
+  </div>
+
+  <div class="pricing">
+    <div class="plan">
+      <h3>Basic</h3>
+      <p>$9 / month</p>
+    </div>
+    <div class="plan">
+      <h3>Pro</h3>
+      <p>$29 / month</p>
+    </div>
+    <div class="plan">
+      <h3>Enterprise</h3>
+      <p>$99 / month</p>
+    </div>
+  </div>
+
+  <button class="toggle-btn" onclick="document.body.classList.toggle('broken')">
+    Toggle Issues
+  </button>
 </body>
 </html>
